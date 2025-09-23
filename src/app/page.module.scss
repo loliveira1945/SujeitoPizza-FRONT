@@ -1,0 +1,68 @@
+.homeContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.homeLogin {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: 600px;
+
+  form {
+    padding-bottom: 16px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 16px;
+  }
+
+  form button {
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--white);
+    background-color: var(--red-900);
+    border: 0;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+  }
+
+  form button:hover {
+    transform: scale(1.05);
+  }
+}
+
+.homeInput {
+  height: 50px;
+  font-size: 16px;
+  color: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--border-radius);
+  padding: 0 16px;
+  background-color: var(--dark-900);
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.700);
+}
+
+.homeText {
+  text-decoration: none;
+}
+
+@media (max-width: 720px) {
+  .homeLogin {
+    width: 90%
+  }
+}
