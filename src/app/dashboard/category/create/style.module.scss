@@ -1,0 +1,38 @@
+.categoryContainer {
+  max-width: 720px;
+  margin: 20px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    color: var(--white);
+  }
+}
+
+.categoryHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.categoryForm {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  margin: 16px 0;
+}
+
+.categoryInput {
+  height: 50px;
+  font-size: 16px;
+  color: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--border-radius);
+  padding: 0 16px;
+  background-color: var(--dark-900);
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.700);
+  }
+}

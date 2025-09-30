@@ -1,45 +1,52 @@
-import Button from "../components/button";
 import styles from "./style.module.scss";
-import { api } from "@/services/api";
-import { getCookieServer } from "@/lib/cookieServer";
-import { redirect } from "next/navigation";
+import { RefreshCw, SquarePlus, SquarePen, Trash2 } from "lucide-react";
+import Link from "next/link";
+import { getCategories } from "@/services/category";
 
-export default function Category() {
+interface ICategory {
+  id: string;
+  name: string;
+}
 
-  async function handleCreateCategory(formData: FormData) {
-    "use server"
-
-    const nameCategory = formData.get("name");
-    const data = { name: nameCategory }
-    const token = await getCookieServer();
-
-    try {
-      await api.post("/category", data, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-    } catch(err) {
-      console.log("Error: ", err);
-      return;
-    }
-    redirect("/dashboard");
-  }
+export default async function Category() {
+  const categories = await getCategories();
 
   return (
     <main className={styles.categoryContainer}>
-      <h1>Nova Categoria</h1>
-      <form action={handleCreateCategory} className={styles.categoryForm}>
-        <input 
-          type="text"
-          name="name"
-          placeholder="Nome da categoria..."
-          required
-          className={styles.categoryInput}
-        />
+      <section className={styles.categoryHeader}>
+        <h1>Categorias</h1>
+        <section className={styles.categoryButtons}>
+          <button aria-label="Atualizar lista de categorias">
+            <RefreshCw size={24} />
+          </button>
 
-        <Button title="Cadastrar" />
-      </form>
+          <Link href="/dashboard/category/create" aria-label="Criar categoria">
+            <SquarePlus size={24} />
+          </Link>
+        </section>
+      </section>
+      <section className={styles.categoryContent}>
+        {categories?.length > 0 ? (
+          <ul>
+            {categories.map((category: ICategory) => (
+              <li key={category.id} className={styles.categoryItem}>
+                {category.name}
+                <div>
+                  <button aria-label="Editar categoria">
+                    <SquarePen size={20} color="#3fffa3" />
+                  </button>
+                  <button aria-label="Apagar categoria">
+                    <Trash2 size={20} color="#ff4d4f" />
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className={styles.categoryEmpty}>Sem categorias...</p>
+        )}
+      </section>
+      
     </main>
   )
 }

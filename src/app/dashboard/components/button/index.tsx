@@ -12,7 +12,7 @@ export default function Button({title}: IButtonProps) {
     <button 
       type="submit" 
       disabled={pending} 
-      className={styles.buttonComponent}
+      className={`${styles.buttonComponent} ${pending ? styles.buttonLoading : ""}`}
     >
       { pending ? "Carregando..." : title }
     </button>
