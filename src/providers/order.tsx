@@ -1,4 +1,5 @@
 "use client"
+
 import { createContext, ReactNode, useState } from "react";
 import { api } from "@/services/api";
 import { getCookieClient } from "@/lib/cookieClient";

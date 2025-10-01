@@ -2,7 +2,6 @@ import Button from "../../components/button";
 import styles from "./style.module.scss";
 import { api } from "@/services/api";
 import { getCookieServer } from "@/lib/cookieServer";
-import { redirect } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -25,7 +24,6 @@ export default function CreateCategory() {
       console.log("Error: ", err);
       return;
     }
-    redirect("/dashboard/category");
   }
 
   return (
